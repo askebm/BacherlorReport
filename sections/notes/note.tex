@@ -1,28 +1,48 @@
 % !TEX program = lualatex
 \documentclass[../../main.tex]{subfiles}
 
-\begin{center}
-\begin{tabular}{@{}p{.49\textwidth}@{\hspace{.02\textwidth}}p{.49\textwidth}@{}}
-	\begin{center}
-		{\bf\large Mender} 
-	\end{center}&
-	\begin{center}
-		{\bf\large Pantahub}
-	\end{center}\\
-	%Mender
-			Can be created from default debian images, so its less intrusive to
-			existing workflow
-			Images as a result of this is huge (requires 8 GB)
-			https://docs.mender.io/2.2/getting-started/quickstart-with-raspberry-pi
-			support Yocto as part of their layers, which should reduce image footprint
-			Will require a new workflow, toolchain, etc.
-			Huge community in both Yocto and Mender
+\subsection*{Mender}%
+\label{sub:mender}
 
-	&%Pantehub
-	Written in C and make use of LXC containers which are also written in C giving
-	the complete project an overall very small footprint
-	Less mature, at time of writing there still several todo in their documantation.
-	Also a smaller community.
+Can be created from default debian images, so its less intrusive to
+existing workflow
+Images as a result of this is huge (requires 8 GB)
+https://docs.mender.io/2.2/getting-started/quickstart-with-raspberry-pi
+support Yocto as part of their layers, which should reduce image footprint
+Will require a new workflow, toolchain, etc.
+Huge community in both Yocto and Mender
 
-\end{tabular}
-\end{center}
+\subsection*{Pantahub}%
+\label{sub:pantahub}
+
+Written in C and make use of LXC containers which are also written in C giving
+the complete project an overall very small footprint
+Less mature, at time of writing there still several todo in their documantation.
+Also a smaller community.
+
+\subsection*{Yocto}%
+\label{sub:yocto}
+
+Uses layers, makes building images for specific usecases easier as necessary layers are included.
+Greater set of requirements, for host build system, Arch linux not working.
+Allows for delta updates in mender to reduce bandwith in Over-The-Air  updates.\\
+Makes it easier to transistion hardware.\\
+Cross-Prelink: - Generate link tables for dynamic linking.
+
+
+
+
+
+
+
+\subsection*{Tests}%
+\label{sub:tests}
+
+\begin{itemize}
+	\item Build time\\
+		Yocto vs Mender convert
+	\item Image size\\
+		Yocto vs Mender convert
+\end{itemize}
+
+
