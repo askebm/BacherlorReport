@@ -27,7 +27,14 @@ Uses layers, makes building images for specific usecases easier as necessary lay
 Greater set of requirements, for host build system, Arch linux not working.
 Allows for delta updates in mender to reduce bandwith in Over-The-Air  updates.\\
 Makes it easier to transistion hardware.\\
-Cross-Prelink: - Generate link tables for dynamic linking.
+Cross-Prelink: - Generate link tables for dynamic linking.\\
+
+
+Their crosscompiler is running on docker. Still doesn't work on arch linux.
+Recommended setup is also to build on host. Look into qemu building.\\
+Bitbake scales very well with multiple cores.
+Poky base image takes up alot of space 50GB plus to build from scratch.
+
 
 
 
