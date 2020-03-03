@@ -1,0 +1,12 @@
+Disk core-image-full-cmdline-raspberrypi3-20200302132557.sdimg: 604 MiB, 633339904 bytes, 1236992 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x038815c4
+
+Device                                                     Boot  Start     End Sectors  Size Id Type
+core-image-full-cmdline-raspberrypi3-20200302132557.sdimg1 *     24576  106495   81920   40M  c W95 FAT32 (LBA)
+core-image-full-cmdline-raspberrypi3-20200302132557.sdimg2      106496  540671  434176  212M 83 Linux
+core-image-full-cmdline-raspberrypi3-20200302132557.sdimg3      540672  974847  434176  212M 83 Linux
+core-image-full-cmdline-raspberrypi3-20200302132557.sdimg4      974848 1236991  262144  128M 83 Linux
