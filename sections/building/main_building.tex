@@ -9,12 +9,11 @@
 	\centering
 	\caption{Build comparison of Mender yocto build and mender-convert build}
 	\label{tab:build_comp}
-	\begin{tabular}{l|cc}
-		& \textbf{Yocto} & \textbf{Mender-convert}\\
+	\begin{tabular}{l|ccc}
+		& \textbf{Yocto with sstate caching}& \textbf{Yocto} & \textbf{Mender-convert}\\
 		\hline
-		\textbf{Build time}&83m11.750s& $\sim$ 20m \\
-		\textbf{Image size}&604MB&7.67GB\\
-		\textbf{Delta updates}&&
+		\textbf{Build time}&3m43.789s&83m11.750s& $\sim$ 20m \\
+		\textbf{Image size}&604mb&604MB&7.67GB\\
 	\end{tabular}
 \end{table}
 \todo{Add numbers to table buidl comparison}
