@@ -1,0 +1,15 @@
+% !TEX program = lualatex
+\documentclass[../../main.tex]{subfiles}
+\begin{document}
+
+\subsubsection{Migrating to yocto}%
+\label{ssub:migrating_to_yocto}
+
+The MCLUR project uses a custom kernel versino of the usbduxfast kernel driver.
+
+\mint{sh}|devtool modify linux-rasberrypi|
+\mint{sh}|<replace usbduxfast.c>|
+\mint{sh}|devtool finish linux-rasberrypi ../meta-mclur|
+
+	
+\end{document}
