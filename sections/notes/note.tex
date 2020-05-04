@@ -1,6 +1,9 @@
 % !TEX program = lualatex
 \documentclass[../../main.tex]{subfiles}
 
+\begin{document}
+	
+
 \subsection*{Mender}%
 \label{sub:mender}
 
@@ -59,4 +62,33 @@ SSTATE CACHING, working - Must be turned on in \texttt{conf/local.conf}.
 		Yocto vs Mender convert
 \end{itemize}
 
+\begin{figure}[h]
+\begin{center}
+	\usetikzlibrary {arrows.meta,graphs,graphdrawing} \usegdlibrary {layered}
+	\tikz []
+		\graph[layered layout,components go down ,component sep=2pt]{
+			User ->
+			Custom API[draw]
+			// [layered layout,components go right] {
+				Research projects[draw] // [layered layout, components go down]{
+					List of assigned devices,
+					Users connected to project
+				};
+				Devices1[draw] // [layered layout, components go down]{
+					Health status
+				};
+				Deploy assignments[draw] // [layered layout, components go down]{
+					Invoke mender update module
+				};
+			} ->
+			Mender API[draw]
+			// [layered layout,components go right] {
+				Devices2, Deployment, Update image
+			};
+		};
+\end{center}
+\caption{A caption}%
+\label{fig:}
+\end{figure}
 
+\end{document}
