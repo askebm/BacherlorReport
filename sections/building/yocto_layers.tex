@@ -1,0 +1,63 @@
+% !TEX program = lualatex
+\documentclass[../../main.tex]{subfiles}
+\begin{document}
+
+
+\subsubsection{Yocto layers}%
+\label{ssub:yocto_layers}
+
+\dirtree{%
+	.1 meta-mclur.
+	.2 conf.
+	.3 layer.conf.
+	.2 COPYING.MIT.
+	.2 README.
+	.2 recipes-kernel.
+	.3 linux.
+	.4 linux-raspberrypi.
+	.5 0001-Canged-usbduxfast.patch.
+	.4 linux-raspberrypi\_\%.bbappend.
+}
+
+Each layer contains recipes e.g. .bb and .bbappend, these recipes contains instruction for
+building packages, which can the be included in the final image
+using the \texttt{IMAGE\_INSTALL} variable.
+
+
+\subsubsection{Migrating to yocto}%
+\label{ssub:migrating_to_yocto}
+
+The MCLUR project uses a custom kernel versino of the usbduxfast kernel driver.
+
+\mint{sh}|devtool modify linux-rasberrypi|
+\mint{sh}|<replace usbduxfast.c>|
+\mint{sh}|devtool finish -m patch linux-rasberrypi ../meta-mclur|
+
+This will generate a patch and a correctly named \texttt{.bbappend} file that will
+apply the patch to the rpi-kernel.
+
+\subsubsection{Workflow}%
+\label{ssub:workflow}
+
+\dirtree{%
+	.1 project.
+	.2 build.
+	.3 conf.
+	.4 bblayer.conf.
+	.4 local.conf.
+	.2 upstream-sources.
+	.3 meta-layers.
+	.3 $\vdots$.
+	.2 meta-mclur.
+	.3 conf.
+	.4 layer.conf.
+	.3 recipes-kernel.
+	.4 linux.
+	.5 linux-raspberrypi.
+	.6 0001-Canged-usbduxfast.patch.
+	.5 linux-raspberrypi\_\%.bbappend.
+}
+
+
+
+\end{document}

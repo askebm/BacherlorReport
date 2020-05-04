@@ -8,6 +8,7 @@
 %		to give the least description for the page layout.
 % Note: Should be before any other page layout, such as adding rule in the header
 \usepackage[headheight=14pt, top=1.5cm, bottom=1.5cm, left=1.0cm, right=4.5cm]{geometry}
+\setlength\parindent{0pt}
 
 %===================================================
 %=============== Fontspec ==========================
@@ -67,4 +68,48 @@
 %		The package lets the user mark things to do later, in a simple and visually appealing way.
 %		The package takes several options to enable customization/finetuning of the visual appearance.
 \usepackage[textwidth=4cm]{todonotes}
+
+%===================================================
+%================ minted ===========================
+%===================================================
+% link: https://www.ctan.org/pkg/minted
+% Description:
+%		The package that facilitates expressive syntax highlighting in LATEX using the powerful
+%		Pygments library. The package also provides options to customize the highlighted source
+%		code output using fancyvrb.
+\usepackage{minted}
+
+
+%===================================================
+%================== pythontex ======================
+%===================================================
+% link: https://www.ctan.org/pkg/pythontex
+% Description:
+%		The package allows you to enter Python code within a LATEX document, execute the code,
+%		and access its output in the original document.
+\usepackage{pythontex}
+%\setpythontexlistingenv{minted}
+\setpythontexlistingenv{lllisting}
+
+
+%===================================================
+%================= tikz ============================
+%===================================================
+% link: https://www.ctan.org/pkg/pgf
+% Description:
+\usepackage{pgf}
+\usetikzlibrary{graphs,graphdrawing}
+\usegdlibrary{layered}
+
+
+%===================================================
+%================ dirtree ==========================
+%===================================================
+% link: https://www.ctan.org/pkg/dirtree
+% Description:
+\usepackage{dirtree}
+\DTsetlength{0.2em}{1em}{0.2em}{0.4pt}{0.0pt}
+%\DTsetlength{offset}{width}{sep}{rule-width}{dot-size}
+
+
 
