@@ -1,0 +1,32 @@
+% !TEX program = lualatex
+\documentclass[../../main.tex]{subfiles}
+\begin{document}
+
+2 existing IoT solution for Linux embedded devices are considered.
+\href{mender.io}{mender} and \href{pantahub.com}{pantacore}.\\
+
+\paragraph{Pantacore}%
+\label{par:pantacore}
+
+is written in C and makes use of LXC containers to deploy application, which is also written in C,
+giving the entire project an overall small footprint rootfs wise.\\
+At the time of writing there are still several todos in their documentation. As exciting as it
+would be to contribute to this open source IoT solution, it is out of the scope of this project.
+
+
+\paragraph{Mender}%
+\label{par:mender}
+
+is a lot more mature the pantacore.  and has the advantage that it can transform a debian image
+to a mender image with a fallback image, so this solution can be appended to any already 
+existing workflow that makes use of debian images. This process as easy as it is, creates a
+rather large 8GB image.\\
+
+Another consideration is that mender supports the yocto project which is a huge project that is
+used to create custom embedded Linux distributions.
+
+
+
+
+	
+\end{document}
