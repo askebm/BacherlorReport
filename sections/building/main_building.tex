@@ -5,26 +5,34 @@
 \section{Building}%
 \label{sec:building}
 
+A preliminary examination of using yocto versus using the mender-convert utility can be seen
+in table \ref{tab:build_comp}. For reference the raspbian buster lite image is approximately
+1.8GB in size.
+
+
 \begin{table}[h]
 	\centering
-	\caption{Build comparison of Mender yocto build and mender-convert build}
+	\caption{
+		Build comparison of the default mender raspberrypi yocto build and a mender-convert build
+		of the default raspbian buster light image.
+	}
 	\label{tab:build_comp}
 	\begin{tabular}{l|ccc}
 		& \textbf{Yocto with sstate caching}& \textbf{Yocto} & \textbf{Mender-convert}\\
 		\hline
 		\textbf{Build time}&3m43.789s&83m11.750s& $\sim$ 20m \\
-		\textbf{Image size}&604mb&604MB&7.67GB\\
+		\textbf{Image size}&604MB&604MB&7.67GB\\
 	\end{tabular}
 \end{table}
 \todo{Add numbers to table buidl comparison}
 
 
-For creating images mender offers 2 posiibilities.
+For creating images mender offers 2 possibilities.
 The first is to user the mender-convert utility, which converts a debian image
 to one with mender support. This approach has little influence on any workflow which relies
 on generating a debian image.\\
-The second option is to build the image using the yocto project and including menders yocto layer.
-To proberly understand the advantages and disadvanteges of using yocto, here is a short introduction.
+The second option is to build the image using the yocto project and including menders yocto layers.
+To properly understand the advantages and disadvantages of using yocto, here is a short introduction.
 
 \subsection{Yocto}%
 \label{sub:yocto}
