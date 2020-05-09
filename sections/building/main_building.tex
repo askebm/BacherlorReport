@@ -9,6 +9,16 @@ A preliminary examination of using yocto versus using the mender-convert utility
 in table \ref{tab:build_comp}. For reference the raspbian buster lite image is approximately
 1.8GB in size.
 
+The table clearly shows that building an image using yocto with sstate caching is far superior
+in build time and image size, at the expense of a bit more setup time compared to the
+mender-convert utility.
+
+What is not shown here is that with yocto all source code for the build is downloaded so it
+requires more disk space from the build system.
+
+Sstate caching is yocto genrating a cache of the compiled binaries, so as long no major
+architechtual changes take place there is no need to recompile a lot of binaries.
+
 
 \begin{table}[h]
 	\centering
@@ -24,14 +34,18 @@ in table \ref{tab:build_comp}. For reference the raspbian buster lite image is a
 		\textbf{Image size}&604MB&604MB&7.67GB\\
 	\end{tabular}
 \end{table}
-\todo{Add numbers to table buidl comparison}
 
 
-For creating images mender offers 2 possibilities.
-The first is to user the mender-convert utility, which converts a debian image
-to one with mender support. This approach has little influence on any workflow which relies
-on generating a debian image.\\
-The second option is to build the image using the yocto project and including menders yocto layers.
+%For creating images mender offers 2 possibilities.
+%The first is to user the mender-convert utility, which converts a debian image
+%to one with mender support. This approach has little influence on any workflow which relies
+%on generating a debian image.\\
+
+Using the yocto project also has the great advantage of having huge community behind it, with support for many different embedded boards which should make future hardware migrationse easier.
+
+Committing to mender and the yocto project does increase the requirement to follow upstream
+yocto layers and update the yocto build to be compliant with upstream yocto.
+
 To properly understand the advantages and disadvantages of using yocto, here is a short introduction.
 
 \subsection{Yocto}%
@@ -41,6 +55,32 @@ Yocto is build system for creating linux distributions for embedded devices. It 
 each modifying the resulting image. These meta-layers can contain board specific settings,
 applications, modifications to other layers and so forth.
 
+The primary files in a meta-layer are the .bb and .bbappend files.
+
+These files follow a strict naming convention in the form of
+\texttt{\{name\}\_\{version\}.\{bb|bbappend\}}. For an example see section \todo{skriv afsnit}.
+
+\subsubsection{Syntax}%
+\label{ssub:syntax}
+
+Variables can be initialised in 3 ways see listing \ref{lst:bb_initialisers}.
+\begin{listing}[h]
+\begin{minted}{bitbake}
+# super weak initialiser
+VAR ??= "1" 
+# weak initialiser
+VAR  ?= "2" 
+# normal initialiser
+VAR   = "3" 
+\end{minted}
+\caption{Initialisers in bb files.}
+\label{lst:bb_initialisers}
+\end{listing}
+
+
+Functions take the form \mintinline{bitbake}|do_compile(){}| and a standard bb recipe contain
+the default functions \mintinline{bitbake}|do_configure(){}|, \mintinline{bitbake}|do_compile(){}|
+and \mintinline{bitbake}|do_install(){}|
 
 
 \subsubsection{Layers}%
