@@ -80,8 +80,12 @@ VAR   = "3"
 
 Functions take the form \mintinline{bitbake}|do_compile(){}| and a standard bb recipe contain
 the default functions \mintinline{bitbake}|do_configure(){}|, \mintinline{bitbake}|do_compile(){}|
-and \mintinline{bitbake}|do_install(){}|
+and \mintinline{bitbake}|do_install(){}|.\\
 
+A function can either be invoked inside a task or it can be promoted to a task and injected into 
+the task chain.
+
+Function can be written in shell or python.
 
 \subsubsection{Layers}%
 \label{ssub:layers}

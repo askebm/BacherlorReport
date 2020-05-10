@@ -2,6 +2,8 @@
 \documentclass[../../main.tex]{subfiles}
 \begin{document}
 
+
+
 \subsection{Provisioning a new device}%
 \label{sub:provisioning_a_new_device}
 Assuming rpi3b+ as to always just run PXE boot
@@ -16,6 +18,9 @@ Assuming rpi3b+ as to always just run PXE boot
 
 \subsection{Tasks}%
 \label{sub:tasks}
+
+Tasks are deployed using the mender update module and deploying a task have been made idempotent
+to not insure that a device will not try to execute the same task twice over.
 
 
 
