@@ -55,37 +55,39 @@ Yocto is build system for creating linux distributions for embedded devices. It 
 each modifying the resulting image. These meta-layers can contain board specific settings,
 applications, modifications to other layers and so forth.
 
-The primary files in a meta-layer are the .bb and .bbappend files.
+The primary files in a meta-layer are bitbake files with the extension .bb and .bbappend files.
 
 These files follow a strict naming convention in the form of
 \texttt{\{name\}\_\{version\}.\{bb|bbappend\}}. For an example see section \todo{skriv afsnit}.
 
-\subsubsection{Syntax}%
-\label{ssub:syntax}
-
-Variables can be initialised in 3 ways see listing \ref{lst:bb_initialisers}.
-\begin{listing}[h]
-\begin{minted}{bitbake}
-# super weak initialiser
-VAR ??= "1" 
-# weak initialiser
-VAR  ?= "2" 
-# normal initialiser
-VAR   = "3" 
-\end{minted}
-\caption{Initialisers in bb files.}
-\label{lst:bb_initialisers}
-\end{listing}
 
 
-Functions take the form \mintinline{bitbake}|do_compile(){}| and a standard bb recipe contain
-the default functions \mintinline{bitbake}|do_configure(){}|, \mintinline{bitbake}|do_compile(){}|
-and \mintinline{bitbake}|do_install(){}|.\\
-
-A function can either be invoked inside a task or it can be promoted to a task and injected into 
-the task chain.
-
-Function can be written in shell or python.
+%\subsubsection{Syntax}%
+%\label{ssub:syntax}
+%
+%Variables can be initialised in 3 ways see listing \ref{lst:bb_initialisers}.
+%\begin{listing}[h]
+%\begin{minted}{bitbake}
+%# super weak initialiser
+%VAR ??= "1" 
+%# weak initialiser
+%VAR  ?= "2" 
+%# normal initialiser
+%VAR   = "3" 
+%\end{minted}
+%\caption{Initialisers in bb files.}
+%\label{lst:bb_initialisers}
+%\end{listing}
+%
+%
+%Functions take the form \mintinline{bitbake}|do_compile(){}| and a standard bb recipe contain
+%the default functions \mintinline{bitbake}|do_configure(){}|, \mintinline{bitbake}|do_compile(){}|
+%and \mintinline{bitbake}|do_install(){}|.\\
+%
+%A function can either be invoked inside a task or it can be promoted to a task and injected into 
+%the task chain.
+%
+%Function can be written in shell or python.
 
 \subsubsection{Layers}%
 \label{ssub:layers}
