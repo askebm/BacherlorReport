@@ -2,25 +2,49 @@
 \documentclass[../../main.tex]{subfiles}
 \begin{document}
 
-
-
 \subsection{Provisioning a new device}%
 \label{sub:provisioning_a_new_device}
-Assuming rpi3b+ as to always just run PXE boot
+Assuming rpi3b+ as to always just run PXE boot. Though if using an older rpi unit use 
+\mintinline{bash}{bootbin.sh} to setup an sdcard up with the bootcode.bin file which
+enables older rpis to PXE boot.
+
+PXE boot server is hosted on an rpi. A new device will boot a default raspbian buster image
+which mounts an nfs share from the development host which have the current sdcard image that 
+should be deployed. On the same share there is a script, \mintinline{bash}{boot.sh}, which is
+run using a cron job during startup.\\
+
+\todo{figur} 
+
+When a device boots the mender image for the first time it will show up as pending on the mender
+host interface \todo{Hvad hedder det nu}. Here it can be accepted as a authorized device.
+This is under the assumption that local network on which the developer host attached is secure.
+
 
 \subsection{Updating existing device}%
 \label{sub:updating_existing_device}
 
-\begin{itemize}
-	\item Bandwidth
-	\item Devices downtime
-\end{itemize}
+Updating a device is taken of by the mender server. When compiling a sdcard image using yocto,
+a mender artefact is also generated, this can be uploaded to the mender server.
+The artefact can then be assigned devices or groups, where any device in an assigned group will
+receive the update the next time the deployed device polls the mender server.
+
+\todo{More about how mender does this and what to do when an update false}
+
 
 \subsection{Tasks}%
 \label{sub:tasks}
 
 Tasks are deployed using the mender update module and deploying a task have been made idempotent
 to not insure that a device will not try to execute the same task twice over.
+
+A mender update module is an executable located in \texttt{/usr/share/mender/modules/v3}
+which takes 2 arguments, state and files.
+
+For this project we assume that any needed program is existing on the deployed device,
+so a update module is made that adds tasks as cron jobs.
+
+
+
 
 
 
