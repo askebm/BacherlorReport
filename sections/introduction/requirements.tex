@@ -1,0 +1,20 @@
+% !TEX program = lualatex
+\documentclass[../../main.tex]{subfiles}
+\begin{document}
+\begin{itemize}
+	\item It should be possible to deploy an application to a specific PI in the field.
+	\item It should be possible to re-deploy to a specific PI in the field.
+	\item It should be possible to deploy an application and run the PI in the field, offline
+	\item It should be possible to get the log from the PI while it’s in the field (and is online)
+	\item There should be a built-in mechanism that handles software failure (rolls back to the last working version)
+	\item The solutions must be able to handle a custom kernel (as it needs to support the custom kernel module made by John)
+	\item The applications must be able to talk with the hardware (I2C, DAC etc.)
+	\item Deploying the initial image/stub/whatever to a PI must be fast, easy and as automatic as possible (PXE boot, etc.)
+	\item Registering/discovering the new PI must be fast, easy and possible to automate.
+	\item The system must handle different namespaces/accounts/groups in order to be able to handle multiple projects with different project owners.
+	\item The solution must not rely on being able to SSH/contact the PI directly - all communication with the PI must happen through a web interface.
+	\item All configuration for a certain application(s) must not rely on custom config of the stub/host-image - all configuration should be included in the container/image. (kernel modules are an exception to this)
+	\item Persistent data (sound recordings) should be saved on an external harddrive (outside the container)
+	\item Security must be part of the solutions design, so the PIs can’t be used as botnet, mining, etc.
+\end{itemize}
+\end{document}
