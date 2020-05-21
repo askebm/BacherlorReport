@@ -2,6 +2,10 @@
 \documentclass[../../main.tex]{subfiles}
 \begin{document}
 
+To generally reduce the risk of a deployed device being hijacked, no ports are open and 
+all communication is initiated by the deployed device polling the  mender server for any possible
+updates.
+
 The first attack vector that is considered is tampering with device, where an 
 unsolicited 3rd party obtains physical access to the deployed device and
 transmit false data back.\\
@@ -16,15 +20,29 @@ internet connection and is trying to incorporate the deployed device into a botn
 \subsection{Tamper protection}%
 \label{sub:tamper_protection}
 
+Assuming the deployed device is in a box, the box can be wired in such a ways that any opening of
+box will trigger an event on the device.
+
+This will not prevent tampering, but will allow server side detection of tampering.
+The tampering will marked in the health statistic of the device, which will be encrypted with a
+public key from the server.
 
 
 \subsection{Sign returned data with solokey}%
 \label{sub:sign_returned_data_with_solokey}
 
+Assuming and encryption chip being located on the deploy device. This is being emulated with a
+solokey connected via USB.
+
 Verify hardware has not been replaced
 
 \subsection{Certificates and keys}%
 \label{sub:certificates_and_keys}
+
+Mender handles this.
+
+Should handle if some has control over our internet connection, and tries to spoof being the
+mender server.
 
 
 
