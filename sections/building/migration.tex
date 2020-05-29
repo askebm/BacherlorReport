@@ -1,0 +1,131 @@
+% !TEX program = lualatex
+\documentclass[../../main.tex]{subfiles}
+\begin{document}
+
+
+
+
+
+The primary applicatins of the MCLURS project reside in this
+\href{https://gitlab.com/esrl/mclurs.git }{gitlab} project.
+
+
+\paragraph{Steps}%
+\label{par:steps}
+
+
+\begin{itemize}
+	\item \mintinline{bash}{devtool add https://gitlab.com/esrl/mclurs.git}
+\end{itemize}
+This creates a workspace workspace folder like this:
+
+\dirtree{%
+	.1 workspace.
+	.2 recipes.
+	.2 sources.
+	.2 $\cdots$.
+}
+\mintinline{bash}{devtool} will automatically attempt to create a recipe that builds the project.
+The mclurs git however does not have a \mintinline{bash}{Makefile} in the root of the repository.
+Instead the make files are located in \mintinline{bash}{mclurs-1.0/} and
+\mintinline{bash}{libmclurs-snap-perl-1.0/}.
+The most correct thing to do here is to have separate recipes for each sub-project, ideally
+dividing them into separate git repositories.
+As to not disturb any current workflow an extra \mintinline{bash}{Makefile} is provided, that
+builds and installs the sub-projects. This also allow the use of the
+\mintinline{bash}{autotools.bbclass} which provides default pre-compile and compile functions.
+All that is left to do is to provide a install function and adding the files to the package which can be seen in listing \ref{lst:mclurs_install}.
+
+\begin{listing}
+\begin{minted}{bitbake}
+do_install () {
+	oe_runmake install DESTDIR=${D} SBINDIR=${sbindir} MANDIR=${mandir} INCLUDEDIR=${includedir}
+}
+FILES_${PN} = "${sbindir}/* ${bindir}/* ${datadir}/*"
+\end{minted}
+\caption{do\_install and package files for mclurs.}
+\label{lst:mclurs_install}
+\end{listing}
+
+Normally when creating a perl recipe it usally enough to inherit from the
+\mintinline{bash}{cpan.bbclass} to setup the correct build environment, but as
+\mintinline{bash}{libmclurs-snap-perl-1/} only has an install target and no compiling
+is not needed, using a normal \mintinline{bash}{Makefile} suffices here.\\
+
+There is also a custom version of the usbduxfast kernel module which the mclurs system
+make use of. It resides in \mintinline{bash}{mclurs-1.0/adc/kernel/}. Usually the
+\mintinline{bash}{usbduxfast.h} file is replaced in the linux kernel is replaced with this custom
+one written by John Hallam.
+There 2 ways to go about this; either create a patch or prepend an action to the pre-compile
+function that replaces the usbduxfast module.
+Both solutions are viable, but the most commonly accepted solution is to make a patch.
+An easy way to do this is again to use \mintinline{bash}{devtool}.
+\mintinline{bash}{devtool modify linux-raspberrypi} will populate
+\mintinline{bash}{<WORKDIR>/build/workspace/sources/linux-raspberrypi/ }
+with the source from the linux-kernel used for the raspberrypi.
+Then its just replacing the usbduxfast file, git committing the change and
+using \mintinline{bash}{devtool finish -m patch linux-raspberrypi <WORKDIR>/meta-mclurs}.
+This generate a \mintinline{bash}{.bbappend} file in the meta-mclurs layer and a patch file
+that will then be applied.\\
+
+The mclurs project is runtime dependent on zsh, daemontools, runit and some perl modules.
+There is already recipe for both zsh and daemontools, but not for runit.
+The trouble with runit is that is an init system would replace systemd that mender is dependent on.
+The best solution would be to either port mender to runit or mclurs to systemd.
+As a middle of the road alternative a runit recipe that runs as a systemd service is created using
+the same workflow as the mclurs project. The recipe is based on 
+\href{https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=runit-systemd}{this}
+AUR makepkg file.\\
+
+The \mintinline{bash}{libmclurs-snap-perl-1.0} has a perl dependency tree which can be seen in
+figure \ref{fig:libmclurs perl dep}
+
+
+\begin{figure}[h]
+	\centering
+	\usetikzlibrary {graphs,graphdrawing} \usegdlibrary {layered}
+	\begin{tikzpicture}[build/.style={draw,color=red}, run/.style={draw,color=blue}]
+		\graph [layered layout]
+		{
+			"libmclurs-snap-perl-1.0"[draw] -> "ZMQ -"[run] -> {
+				"Sub-Name +"[run],
+				"ZMQ-Constants -"[run],
+				"ZMQ-LibZMQ2 -"[run] -> {
+					"Task-Weaken +"[run],
+					"Devel-CheckLib -"[build],
+					"Test-Requires +"[build],
+					"Test-Fatal +"[build] -> "Try-Tiny +"[build],
+					"Test-TCP +"[build] -> "Test-SharedFork +"[build]
+				}
+			}
+		};
+
+	\matrix [draw,below left] at (current bounding box.north east) {
+		\node [build,label=right:Build dependencies] {}; \\
+		\node [run,label=right:Runtime dependencies] {}; \\
+		\node [label=right:Available recipe] {+}; \\
+		\node [label=right:No available recipe] {-}; \\
+	};
+	\end{tikzpicture}
+	\caption{Perl dependency tree for libmclurs-snap-perl-1.0.}%
+	\label{fig:libmclurs perl dep}
+\end{figure}
+
+\todo{Perls a bitch} 
+
+\subsubsection{Easier migration option}%
+\label{ssub:easier_migration_option}
+
+Instead of creating all these recipes mender has an update module that supports docker
+passing docker containers. The value here that not as much dependency resolving is necessary.
+
+Docker would fill all the requirements regarding sandboxing hardware access and so on,
+but the cost would be a greater overhead while running the applications, which in turn
+means a greater power consumption.
+
+If the application that runs on the deployed device changes frequently a container solution
+would make a lot of sense, but as this is not the case with the mclurs system this solution
+is suboptimal, but easier from a migration stand point.
+
+
+\end{document}

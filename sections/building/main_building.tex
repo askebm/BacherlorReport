@@ -94,17 +94,7 @@ These files follow a strict naming convention in the form of
 \subsubsection{Migrating to yocto}%
 \label{ssub:migrating_to_yocto}
 
-The primary applicatins of the MCLURS project reside in this
-\href{https://gitlab.com/esrl/mclurs.git }{gitlab} project.
-
-Since the project uses makefiles, the bitbake recipe should inherit from the autotools class using.
-\inputminted{bitbake}{/home/aske/Bachelor/mender-raspberrypi/meta-mclur/recipes-mclurs/mclurs/mclurs_git.bb}
-
-
-Project is dependent on runit. Using runit alongside systemd
-https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=runit-systemd
-
-the perl script snap-pm is dependent on the zero mq library.
+\subfile{migration.tex}
 
 
 \subsubsection{Layers}%
