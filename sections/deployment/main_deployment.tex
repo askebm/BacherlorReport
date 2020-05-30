@@ -55,7 +55,30 @@ containers.
 The custom kernel module is still needed on the deployed device, but other than that it only needs
 the docker service.
 
+A mclurs docker file can be seen in listing \ref{lst:mclurs-docker}.
+
+\begin{listing}[h]
 \inputminted{docker}{/home/aske/Bachelor/DockerMCLURS/Dockerfile}
+\caption{A docker file that enables the MCLURS project to run in a dockerdocker  container.}
+\label{lst:mclurs-docker}
+\end{listing}
+
+The docker container can then be build and pushed to dockerhub.
+A mender artifact can then be generated as shown in listing \ref{lst:docker-mender-push}.
+The artefact can be uploaded the mender server and from there a deployment can be created
+to any device matching \mintinline{bash}|${DEVICE_TYPE}|.
+
+\begin{listing}[h]
+\begin{minted}{bash}
+docker build . -t mclurs
+docker push ${ID}/${REPO}:mclurs
+docker-artifact-gen -n ${ARTIFACT_NAME} -t ${DEVICE_TYPE} -o ${OUTPUT_PATH} ${DOCKER_IMAGES}
+\end{minted}
+\caption{Generate mender artefact for the docker mender update module.}
+\label{lst:docker-mender-push}
+\end{listing}
+
+
 
 
 
