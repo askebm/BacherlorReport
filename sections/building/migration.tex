@@ -87,19 +87,22 @@ figure \ref{fig:libmclurs perl dep}
 	\begin{tikzpicture}[build/.style={draw,color=red}, run/.style={draw,color=blue}]
 		\graph [layered layout]
 		{
-			"libmclurs-snap-perl-1.0"[draw] -> "ZMQ -"[run] -> {
-				"Sub-Name +"[run],
-				"ZMQ-Constants -"[run],
-				"ZMQ-LibZMQ2 -"[run] -> {
-					"Task-Weaken +"[run],
-					"Devel-CheckLib -"[build],
-					"Test-Requires +"[build],
-					"Test-Fatal +"[build] -> "Try-Tiny +"[build],
-					"Test-TCP +"[build] -> "Test-SharedFork +"[build]
-				}
+			"libmclurs-snap-perl-1.0"[draw] -> {
+				"ZMQ -"[run] -> {
+					"Sub::Name +"[run],
+					"ZMQ::Constants -"[run] -> "Module::Install -"[build],
+					"ZMQ::LibZMQ3 -"[run] -> {
+						"Task::Weaken +"[run],
+						"Devel::CheckLib -"[build],
+						"Test::Requires +"[build],
+						"Test::Fatal +"[build] -> "Try::Tiny +"[build],
+						"Test::TCP +"[build] -> "Test::SharedFork +"[build],
+						"Module::Install -"
+					}
+				},
+				"ZMQ::LibZMQ3 -"
 			}
 		};
-
 	\matrix [draw,below left] at (current bounding box.north east) {
 		\node [build,label=right:Build dependencies] {}; \\
 		\node [run,label=right:Runtime dependencies] {}; \\
@@ -111,7 +114,12 @@ figure \ref{fig:libmclurs perl dep}
 	\label{fig:libmclurs perl dep}
 \end{figure}
 
-\todo{Perls a bitch} 
+The dependencies are gathered from \href{https://cpandeps.grinnz.com/}{this} site.
+
+Unfortunately it was not possible to port
+\href{https://metacpan.org/pod/ZMQ::LibZMQ3}{ZMQ::LibZMQ3} to yocto mostly due to lack
+of understanding of perl build system.
+
 
 \subsubsection{Easier migration option}%
 \label{ssub:easier_migration_option}
