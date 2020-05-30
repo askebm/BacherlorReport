@@ -2,23 +2,32 @@
 \documentclass[../../main.tex]{subfiles}
 \begin{document}
 
+As soon as a device has an active internet connection security is a concern.
+The primary concern is the device being hijacked and used in a botnet for malicious 
+purposes.
+
+For the MCLURS project it is also a concern to verify a device such that it is not possible for
+anyone to deploy a device and report research data. This also includes that it should not be possible
+to tamper with a device, at least not undetected.
+
+
+Theft is also a concern, but is not covered here.
 
 
 
-
-To generally reduce the risk of a deployed device being hijacked, no ports are open and 
-all communication is initiated by the deployed device polling the  mender server for any possible
-updates.
-
-The first attack vector that is considered is tampering with device, where an 
-unsolicited 3rd party obtains physical access to the deployed device and
-transmit false data back.\\
-
-The second attack vector that is considered is spoofing, where in an unsolicited 3rd
-party pretends to an already deployed device.\\
-
-Lastly we consider a situation where an attacker have gained control over the
-internet connection and is trying to incorporate the deployed device into a botnet.
+%To generally reduce the risk of a deployed device being hijacked, no ports are open and 
+%all communication is initiated by the deployed device polling the  mender server for any possible
+%updates.
+%
+%The first attack vector that is considered is tampering with device, where an 
+%unsolicited 3rd party obtains physical access to the deployed device and
+%transmit false data back.\\
+%
+%The second attack vector that is considered is spoofing, where in an unsolicited 3rd
+%party pretends to an already deployed device.\\
+%
+%Lastly we consider a situation where an attacker have gained control over the
+%internet connection and is trying to incorporate the deployed device into a botnet.
 
 
 \subsection{Tamper protection}%
@@ -28,17 +37,10 @@ Assuming the deployed device is in a box, the box can be wired in such a ways th
 box will trigger an event on the device.
 
 This will not prevent tampering, but will allow server side detection of tampering.
-The tampering will marked in the health statistic of the device, which will be encrypted with a
-public key from the server.
 
+To demo this effect a small C program is written that utilises the button on the sense hat
+module.
 
-\subsection{Sign returned data with solokey}%
-\label{sub:sign_returned_data_with_solokey}
-
-Assuming and encryption chip being located on the deploy device. This is being emulated with a
-solokey connected via USB.
-
-Verify hardware has not been replaced
 
 \subsection{Certificates and keys}%
 \label{sub:certificates_and_keys}
@@ -47,6 +49,14 @@ Mender handles this.
 
 Should handle if some has control over our internet connection, and tries to spoof being the
 mender server.
+
+ssl security
+
+
+\subsubsection{Possible extension of signingkeys}%
+\label{ssub:possible_extension_of_signingkey}
+
+Extend mclurs to cross-over SoC and use FIDO2
 
 
 
