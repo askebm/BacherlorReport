@@ -14,6 +14,23 @@ should be deployed. On the same share there is a script, \mintinline{bash}{boot.
 run using a cron job during startup.\\
 
 \todo{figur} 
+\usegdlibrary {force}
+\begin{figure}[h]
+\begin{center}
+\begin{tikzpicture}[]
+	\graph [spring layout,component sep=2cm] {
+		"switch" -- {
+			"PXEBOOT server",
+			"build host",
+			"New device
+		}
+	};
+\end{tikzpicture}
+\end{center}
+\caption{}%
+\label{fig:}
+\end{figure}
+
 
 
 When a device boots the mender image for the first time it will show up as pending on the mender
