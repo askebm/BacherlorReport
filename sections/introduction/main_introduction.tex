@@ -3,19 +3,22 @@
 \begin{document}
 
 As this project aims to implement an IoT like workflow, for deploying sandboxed applications
-on Linux embedded devices \todo{We}, we start by looking at existing solutions that might
-facilitate this kind of workflow.\\
+on Linux embedded devices. In this project only raspberrypis are used, but with some
+tooling it should be made to work on many other devices.\\
 
-This project attempts to create a solution which the MCLURS system can take advantage of.
+There already exists open-source solutions which can be taken advantage of, as it is generally a bad
+idea to write security yourself.
 
-Afterwards we look at what extra features one these services provide which could improve
-the maintainability/longevity/flexibility of the workflow.
-Here we go through how to build an image, updating existing devices and provisioning a new
-device.\\
+To make the project more goal oriented it aims to port the MCLURS project to this workflow.
+This is done both to prove the workflow works, but also to delve deep into the workflow
+to discover any quirks that might mike this workflow unsuitable.
 
-Afterwards we go through how to deploy a task to a device\\
+The report is divided into 3 main sections, building, deployment and security.
 
-Lastly we explore which attack vectors to secure against and how we do so.
+Building covers everything up until using the system to deploy device and tasks.
+Deployment describes how device are provisioned, deployed and given tasks.
+Security covers which security concerns have been taken into account.
+
 
 \subsection{Existing solution}%
 \label{sub:existing_solution}
