@@ -6,15 +6,11 @@
 
 The primary applicatins of the MCLURS project reside in this
 \href{https://gitlab.com/esrl/mclurs.git }{gitlab} project.
+To start new layer, the configuration files could be written by hand, but
+OpenEmbedded har at tool \mintinline{bash}{bitbake-layer} which can create
+a template for a new layer , using the command \mintinline{bash}{bitbake-layer create-layer <path>}. 
 
-
-\paragraph{Steps}%
-\label{par:steps}
-
-
-\begin{itemize}
-	\item \mintinline{bash}{devtool add https://gitlab.com/esrl/mclurs.git}
-\end{itemize}
+From here a best guess recipe can be made using \mintinline{bash}{devtool add <git-url>}.
 This creates a workspace workspace folder like this:
 
 \dirtree{%
@@ -32,16 +28,12 @@ dividing them into separate git repositories.
 As to not disturb any current workflow an extra \mintinline{bash}{Makefile} is provided, that
 builds and installs the sub-projects. This also allow the use of the
 \mintinline{bash}{autotools.bbclass} which provides default pre-compile and compile functions.
-All that is left to do is to provide a install function and adding the files to the package which can be seen in listing \ref{lst:mclurs_install}.
+All that is left to do is to tell what package the generated file belong.
+The full bitbake recipe can be seen in listing \ref{lst:mclurs_install}.
 
 \begin{listing}
-\begin{minted}{bitbake}
-do_install () {
-	oe_runmake install DESTDIR=${D} SBINDIR=${sbindir} MANDIR=${mandir} INCLUDEDIR=${includedir}
-}
-FILES_${PN} = "${sbindir}/* ${bindir}/* ${datadir}/*"
-\end{minted}
-\caption{do\_install and package files for mclurs.}
+	\inputminted[firstline=13]{bitbake}{/home/aske/Bachelor/mender-raspberrypi/meta-mclurs/recipes-mclurs/mclurs/mclurs_git.bb}
+\caption{MCLURS bitbake recipe.}
 \label{lst:mclurs_install}
 \end{listing}
 

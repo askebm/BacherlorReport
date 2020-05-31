@@ -43,16 +43,15 @@ This will not prevent tampering, but will allow server side detection of tamperi
 To demo this effect a small C program is written that utilises the button on the sense hat
 module.
 
-When the event i triggered a time stamp is encrypted using a public key.
-This encrypted message is then available in the mender inventory.
+When the event i triggered a time stamp overwrites the current time stamp.
+Time stamp is then available in the mender inventory.
 When this message then changes in the mender inventory it can then be verified
 whether access to the deployed device was legitimate or not.
 
 \subsection{Authorizing Devices}%
 \label{sub:authorizing_devices}
 
-Mender supports 2 authorization workflows, pre-authorized and authorise on request.
-
+Makes use inventory and public keys from server
 
 \begin{minted}[bgcolor=white!0]{json}
 {
@@ -83,34 +82,6 @@ Mender supports 2 authorization workflows, pre-authorized and authorise on reque
       "value": "2.2.0"
     }
   ],
-  "updated_ts": "2020-05-23T02:27:41.02Z"
-}
-
-\end{minted}
-
-
-
-
-\subsection{Certificates and keys}%
-\label{sub:certificates_and_keys}
-
-
-
-
-%\subsection{Possible extension of signingkeys}%
-%\label{ssub:possible_extension_of_signingkey}
-%
-%Extend mclurs to cross-over SoC and use FIDO2
-%
-%
-%
-	
-\end{document}
-    {
-      "name": "mender_client_version",
-      "value": "2.2.0"
-    }
-  ],
   "updated_ts": "2020-05-31T14:42:09.02Z"
 }
 
@@ -119,8 +90,15 @@ Mender supports 2 authorization workflows, pre-authorized and authorise on reque
 
 
 
-\subsection{Certificates and keys}%
-\label{sub:certificates_and_keys}
+\subsection{Over-The-Air updates}%
+\label{sub:over_the_air_updates}
+
+Mender handles OTA via device polling, as in the device polls the mender server for updates.
+This ensures that no port on the deployed device needs to be open, greatly lowering the risk of
+a deployed device being hijacked.
+The device verifies the mender server using SSL certificates.
+This should overcome any man in the middle attack.
+
 
 
 
