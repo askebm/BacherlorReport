@@ -42,6 +42,11 @@ This will not prevent tampering, but will allow server side detection of tamperi
 To demo this effect a small C program is written that utilises the button on the sense hat
 module.
 
+When the event i triggered a time stamp is encrypted using a public key.
+This encrypted message is then available in the mender inventory.
+When this message then changes in the mender inventory it can then be verified
+whether access to the deployed device was legitimate or not.
+
 
 \subsection{Certificates and keys}%
 \label{sub:certificates_and_keys}
