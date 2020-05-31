@@ -83,7 +83,7 @@ figure \ref{fig:libmclurs perl dep}
 	\centering
 	\usetikzlibrary {graphs,graphdrawing} \usegdlibrary {layered}
 	\begin{tikzpicture}[build/.style={draw,color=red}, run/.style={draw,color=blue}]
-		\graph [layered layout]
+		\graph [layered layout, edges=rounded corners]
 		{
 			"libmclurs-snap-perl-1.0"[draw] -> {
 				"ZMQ -"[run] -> {
@@ -116,7 +116,26 @@ The dependencies are gathered from \href{https://cpandeps.grinnz.com/}{this} sit
 
 Unfortunately it was not possible to port
 \href{https://metacpan.org/pod/ZMQ::LibZMQ3}{ZMQ::LibZMQ3} to yocto mostly due to lack
-of understanding of perl build system.
+of understanding of perl build system.\\
+
+The resulting MCLURS layer can be found \href{https://github.com/askebm/meta-mclurs}{github}.
+The packages provides by the MCLURS layer are listed her:
+\begin{itemize}
+	\item devel-checklib-perl
+	\item file-remove-perl
+	\item mclurs (not fully functional in runtime)
+	\item module-corelist-perl
+	\item module-install-perl
+	\item module-scandeps-perl
+	\item runit-systemd
+	\item yaml-tiny-perl
+	\item zeromq
+	\item zmq-constants-perl
+	\item zmq-libzmq3-perl (not working)
+	\item	zmq-perl (not working)
+\end{itemize}
+
+
 
 
 
