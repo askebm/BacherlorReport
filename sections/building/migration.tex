@@ -82,7 +82,8 @@ figure \ref{fig:libmclurs perl dep}
 \begin{figure}[h]
 	\centering
 	\usetikzlibrary {graphs,graphdrawing} \usegdlibrary {layered}
-	\begin{tikzpicture}[build/.style={draw,color=red}, run/.style={draw,color=blue}]
+	\begin{tikzpicture}[build/.style={draw,color=red}, run/.style={draw,color=blue},
+		edges=rounded corners]
 		\graph [layered layout, edges=rounded corners]
 		{
 			"libmclurs-snap-perl-1.0"[draw] -> {
@@ -131,8 +132,8 @@ The packages provides by the MCLURS layer are listed her:
 	\item yaml-tiny-perl
 	\item zeromq
 	\item zmq-constants-perl
-	\item zmq-libzmq3-perl (not working)
-	\item	zmq-perl (not working)
+	\item zmq-libzmq3-perl (not building)
+	\item	zmq-perl (not building)
 \end{itemize}
 
 
