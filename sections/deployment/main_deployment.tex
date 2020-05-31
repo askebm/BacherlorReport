@@ -15,10 +15,18 @@ run using a cron job during startup.\\
 
 \todo{figur} 
 
+
 When a device boots the mender image for the first time it will show up as pending on the mender
-host interface \todo{Hvad hedder det nu}. Here it can be accepted as a authorized device.
+host interface as can be seen in figure \ref{fig:mender-ui-pending}.
+Here it can be accepted as a authorized device.
 This is under the assumption that local network on which the developer host attached is secure.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\linewidth]{img/mender-ui-pending-edited.pdf}
+	\caption{Mender interface when device is pending}%
+	\label{fig:mender-ui-pending}
+\end{figure}
 
 \subsection{Updating existing device}%
 \label{sub:updating_existing_device}
