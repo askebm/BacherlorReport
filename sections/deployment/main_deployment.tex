@@ -15,21 +15,28 @@ run using a cron job during startup.\\
 
 \todo{figur} 
 \usegdlibrary {force}
+\usetikzlibrary {quotes}
 \begin{figure}[h]
 \begin{center}
-\begin{tikzpicture}[]
-	\graph [spring layout,component sep=2cm] {
-		"switch" -- {
-			"PXEBOOT server",
-			"build host",
-			"New device
-		}
-	};
+\begin{tikzpicture}[spring layout,node distance=2cm]
+	\node (1) {New Device};
+	\node (2) {PXEBOOT server};
+	\node (3) {Switch};
+	\node (4) {Build Host};
+	\draw (1) edge (3)
+				(4) edge (3)
+				(1) edge["1.",bend left,->,color=blue] (2)
+				(2) edge["2.",bend left,->,color=red] (1)
+				(1) edge["3.",->,bend right,color=blue!60!black] (4)
+				(4) edge["4.",bend right,->,color=red!60!black] (1)
+				(3) edge (2);
 \end{tikzpicture}
 \end{center}
-\caption{}%
+\caption{1. PXEBOOT; 2. Boot default RPI image; 3. Mount NFS share;
+	4. Run \mintinline{bash}{boot.sh}  script}%
 \label{fig:}
 \end{figure}
+
 
 
 
