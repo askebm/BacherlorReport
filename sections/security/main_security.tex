@@ -10,10 +10,11 @@ For the MCLURS project it is also a concern to verify a device such that it is n
 anyone to deploy a device and report research data. This also includes that it should not be possible
 to tamper with a device, at least not undetected.
 
+Most security regarding the deployed devices are handled either by upstream as it is a bad idea to
+do security yourself.
+The only concern not covered by upstream is tamper protection/detection and theft.
 
-
-Theft is also a concern, but is not covered here.
-
+Theft is not covered here.
 
 
 %To generally reduce the risk of a deployed device being hijacked, no ports are open and 
@@ -47,24 +48,89 @@ This encrypted message is then available in the mender inventory.
 When this message then changes in the mender inventory it can then be verified
 whether access to the deployed device was legitimate or not.
 
+\subsection{Authorizing Devices}%
+\label{sub:authorizing_devices}
+
+Mender supports 2 authorization workflows, pre-authorized and authorise on request.
+
+
+\begin{minted}[bgcolor=white!0]{json}
+{
+  "id": "5ed373e8bacd430001464145",
+  "attributes": [
+    {
+      "name": "rootfs_type",
+      "value": "ext4"
+    },
+    {
+      "name": "mac_eth0",
+      "value": "b8:27:eb:c5:de:49"
+    },
+    {
+      "name": "ipv4_eth0",
+      "value": "192.168.0.41/24"
+    },
+    {
+      "name": "device_type",
+      "value": "raspberrypi3"
+    },
+    {
+      "name": "tamper_date",
+      "value": "2020-05-31T14:42:09.02Z"
+    },
+    {
+      "name": "mender_client_version",
+      "value": "2.2.0"
+    }
+  ],
+  "updated_ts": "2020-05-23T02:27:41.02Z"
+}
+
+\end{minted}
+
+
+
 
 \subsection{Certificates and keys}%
 \label{sub:certificates_and_keys}
 
-Mender handles this.
-
-Should handle if some has control over our internet connection, and tries to spoof being the
-mender server.
-
-ssl security
-
-
-\subsection{Possible extension of signingkeys}%
-\label{ssub:possible_extension_of_signingkey}
-
-Extend mclurs to cross-over SoC and use FIDO2
 
 
 
+%\subsection{Possible extension of signingkeys}%
+%\label{ssub:possible_extension_of_signingkey}
+%
+%Extend mclurs to cross-over SoC and use FIDO2
+%
+%
+%
+	
+\end{document}
+    {
+      "name": "mender_client_version",
+      "value": "2.2.0"
+    }
+  ],
+  "updated_ts": "2020-05-31T14:42:09.02Z"
+}
+
+\end{minted}
+
+
+
+
+\subsection{Certificates and keys}%
+\label{sub:certificates_and_keys}
+
+
+
+
+%\subsection{Possible extension of signingkeys}%
+%\label{ssub:possible_extension_of_signingkey}
+%
+%Extend mclurs to cross-over SoC and use FIDO2
+%
+%
+%
 	
 \end{document}
