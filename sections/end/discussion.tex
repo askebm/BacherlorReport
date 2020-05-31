@@ -11,12 +11,13 @@ Of course one could argue for security by obscurity, but that is generally frown
 only work as long as the project is very small.
 
 
-The current project is not as easy to maintain as the previous distribution method, mainly
+The current project is not as easy to maintain, as the previous distribution method, mainly
 because the previous solution was not connected to the internet. The chosen solution does incur
 some more maintenance compared converting a debian image.
 All the benefits of using the yocto project are not apparent in this project. Going forward
 it would be easier for MCLURS system to branch out to use other devices and even use crossover
 SoCs with multiple hardware architectures to get more specialised sound recordings.
+
 
 
 Migrating to the yocto project is not penalty free, as it requires some more specialised knowledge
@@ -25,8 +26,13 @@ To help accomadte migration the yocto project has their \texttt{devtool}, which 
 most of the migration and create the initial recipes. It doesn't do everything and knowledge about
 how the yocto project operates is still needed.
 
+As seen in this project close familiarity with the software being ported to yocto is a huge benefit
+as dealing with new workflows and new build systems can make for a confusing debugging experience.
+
 An advantage that choosing the mender project is that they offer to host the mender server, which
 can reduce needed maintenance hours in maintaining server security.
+
+
 
 
 

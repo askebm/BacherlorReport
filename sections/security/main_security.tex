@@ -48,11 +48,9 @@ Time stamp is then available in the mender inventory.
 When this message then changes in the mender inventory it can then be verified
 whether access to the deployed device was legitimate or not.
 
-\subsection{Authorizing Devices}%
-\label{sub:authorizing_devices}
+An example returned from the mender API can be seen in listing \ref{lst:inv-tamp-json}.
 
-Makes use inventory and public keys from server
-
+\begin{listing}
 \begin{minted}[bgcolor=white!0]{json}
 {
   "id": "5ed373e8bacd430001464145",
@@ -81,7 +79,9 @@ Makes use inventory and public keys from server
 }
 
 \end{minted}
-
+\caption{Mender device inventory example in JSON format.}
+\label{lst:inv-tamp-json}
+\end{listing}
 
 
 
@@ -135,6 +135,7 @@ With this system mender can deliver robust and reliable updates for deployed dev
 \caption{Mender states during update}%
 \label{fig:mender-states}
 \end{figure}
+This system with states also allow for great customizability when creating update modules.
 
 
 
