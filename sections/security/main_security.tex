@@ -99,7 +99,42 @@ Of rootfs A is version 1.0 adn B is 2.0, then B is in use if it has been committ
 Then if the device updated A will be overridden to the new version and the deployed device will
 try to commit the new rootfs.
 
+An overview of the 9 possible states a m,ender client can be seen in figure \ref{fig:mender-states}.
+A mender artifact can both be a update for a mender update module or a rootfs update.
+With this system mender can deliver robust and reliable updates for deployed devices.
 
+\begin{figure}[h]
+\begin{center}
+\begin{tikzpicture}[random seed=4, spring layout,node distance=3cm%
+	,node/.style={draw}]
+	\node[node,color=green!50!black] (1){Idle};
+	\node[node] (2){Sync};
+	\node[node] (3){Download};
+	\node[node] (4){ArtifactInstall};
+	\node[node] (5){ArtifactReboot};
+	\node[node] (6){ArtifactRollback};
+	\node[node] (7){ArtifactRollbackReboot};
+	\node[node] (8){ArtifactFailure};
+	\node[node] (9){ArtifactCommit};
+	\draw (1) edge[->,bend left] (2)
+				(2) edge[->,bend left] (3)
+				(3) edge[->,bend left] (4)
+				(4) edge[->,bend left] (5)
+				(5) edge[->,bend left] (6)
+				(6) edge[->,bend left] (7)
+				(7) edge[->,bend left] (8)
+				(8) edge[->,bend left] (1)
+				(2) edge[->,bend left] (1)
+				(4) edge[->,bend left] (8)
+				(5) edge[->,bend left] (9)
+				(9) edge[->,bend left] (1)
+				(9) edge[->,bend left] (6)
+				(6) edge[->,bend left] (8);
+\end{tikzpicture}
+\end{center}
+\caption{Mender states during update}%
+\label{fig:mender-states}
+\end{figure}
 
 
 
