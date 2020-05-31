@@ -60,24 +60,19 @@ Makes use inventory and public keys from server
     {
       "name": "rootfs_type",
       "value": "ext4"
-    },
-    {
+    }, {
       "name": "mac_eth0",
       "value": "b8:27:eb:c5:de:49"
-    },
-    {
+    }, {
       "name": "ipv4_eth0",
       "value": "192.168.0.41/24"
-    },
-    {
+    }, {
       "name": "device_type",
       "value": "raspberrypi3"
-    },
-    {
+    }, {
       "name": "tamper_date",
       "value": "2020-05-31T14:42:09.02Z"
-    },
-    {
+    }, {
       "name": "mender_client_version",
       "value": "2.2.0"
     }
@@ -98,6 +93,11 @@ This ensures that no port on the deployed device needs to be open, greatly lower
 a deployed device being hijacked.
 The device verifies the mender server using SSL certificates.
 This should overcome any man in the middle attack.
+
+To ensure robustness mender makes use of what they call an A/B rootfs.
+Of rootfs A is version 1.0 adn B is 2.0, then B is in use if it has been committed.
+Then if the device updated A will be overridden to the new version and the deployed device will
+try to commit the new rootfs.
 
 
 
