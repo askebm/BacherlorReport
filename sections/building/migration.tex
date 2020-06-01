@@ -24,8 +24,8 @@ The most correct thing to do here is to have separate recipes for each sub-proje
 dividing them into separate git repositories.
 As to not disturb any current workflow an extra \mintinline{bash}{Makefile} is provided, that
 builds and installs the sub-projects. This also allow the use of the
-\mintinline{bash}{autotools.bbclass} which provides default pre-compile and compile functions.
-All that is left to do is to tell what package the generated files belong to.
+\mintinline{bash}{autotools.bbclass} which provides default pre-compile, compile and install
+functions. All that is left to do is to tell what package the generated files belong to.
 The full bitbake recipe can be seen in listing \ref{lst:mclurs_install}.
 
 \begin{listing}
@@ -39,9 +39,9 @@ Normally when creating a perl recipe it usally enough to inherit from the
 \mintinline{bash}{libmclurs-snap-perl-1/} only has an install target and no compiling
 is not needed, using a normal \mintinline{bash}{Makefile} suffices here.\\
 
-There is also a custom version of the usbduxfast kernel module which the mclurs system
+There is also a custom version of the usbduxfast kernel module which the MCLURS system
 make use of. It resides in \mintinline{bash}{mclurs-1.0/adc/kernel/}. Usually the
-\mintinline{bash}{usbduxfast.h} file is replaced in the linux kernel is replaced with this custom
+\mintinline{bash}{usbduxfast.c} file is replaced in the linux kernel is replaced with this custom
 one written by John Hallam.
 There are 2 ways to go about this; either create a patch or prepend an action to the pre-compile
 function that replaces the usbduxfast module.
@@ -52,7 +52,7 @@ An easy way to do this is again to use \mintinline{bash}{devtool}.
 with the source from the linux-kernel used for the raspberrypi.
 Then its just replacing the usbduxfast file, git committing the change and
 using \mintinline{bash}{devtool finish -m patch linux-raspberrypi <WORKDIR>/meta-mclurs}.
-This generate a \mintinline{bash}{.bbappend} file in the meta-mclurs layer and a patch file
+This generates a \mintinline{bash}{.bbappend} file in the meta-mclurs layer and a patch file
 that will then be applied.\\
 
 The mclurs project is runtime dependent on zsh, daemontools, runit and some perl modules.
@@ -105,7 +105,7 @@ The dependencies are gathered using a tool from cpan\cite{perl-deps}.
 
 Unfortunately it was not possible to port
 ZMQ::LibZMQ3\cite{zmq-libzmq3} to yocto mostly due to lack
-of understanding of perl build system.\\
+of understanding of the perl build system.\\
 
 The resulting MCLURS layer is availe on github\cite{meta-mclurs}.
 The packages provides by the MCLURS layer are listed her:

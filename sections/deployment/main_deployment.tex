@@ -8,13 +8,12 @@ Assuming rpi3b+ as to always just run PXE boot. Though if using an older rpi uni
 \mintinline{bash}{bootbin.sh} to setup an sdcard up with the bootcode.bin file which
 enables older rpis to PXE boot.
 
-PXE boot server is hosted on an rpi. A new device will boot a default raspbian buster image
-which mounts an nfs share from the development host which have the current sdcard image that 
+The PXE boot server is hosted on a raspberrypi.
+A new device will boot a default raspbian buster image which mounts an NFS share
+from the development host which have the current sdcard image that 
 should be deployed. On the same share there is a script, \mintinline{bash}{boot.sh}, which is
 run using a cron job during startup.
 This is illustrated in figure \ref{fig:boot-process}.\\
-
-
 
 
 \begin{figure}[h]
@@ -43,7 +42,7 @@ This is illustrated in figure \ref{fig:boot-process}.\\
 
 When a device boots the mender image for the first time it will show up as pending on the mender
 host interface as can be seen in figure \ref{fig:mender-ui-pending}.
-Here it can be accepted as a authorized device.
+Here it can be accepted as an authorized device.
 This is under the assumption that local network on which the developer host attached is secure.
 
 
@@ -67,7 +66,7 @@ Of rootfs A is version 1.0 adn B is 2.0, then B is in use if it has been committ
 Then if the device updated A will be overridden to the new version and the deployed device will
 try to commit the new rootfs.
 
-An overview of the possible states a mender client can be in is shown on
+An overview of the possible states a mender client can be in, is shown on
 figure \ref{fig:mender-states}.
 A mender artifact can both be a update for a mender update module or a rootfs update.
 With this system mender can deliver robust and reliable updates for deployed devices.
@@ -120,21 +119,21 @@ A mender update module is an executable located in \texttt{/usr/share/mender/mod
 which takes 2 arguments, state and files.
 
 Under the assumption that any needed program is existing on the deployed device,
-so a update module is made that adds tasks as cron jobs.
+an update module is made that adds tasks as cron jobs.
 
 This approach is chosen as cron has been around for many years, and is available on most
 Linux systems.
-Cron jobs also have a simple syntax, making it easier to maintain current scheduled tasks.
+Cron jobs also have a simple syntax, making it easier to maintain currently scheduled tasks.
 
 It is also simple to schedule jobs for different users as the cron service looks in
 \mintinline{bash}{/var/spool/cron/} for files with the name of the user it should execute as.
 Making this solution compliant with the requirements in section \ref{sub:requirements}.
 
 This update module is implemented in bash for ease of readability and maintainability, but could
-be implemented in C the footprint of the update module was a greater concern and is publicly
+be implemented in C, if the footprint of the update module was a greater concern and is publicly
 available on github\cite{mclurs-update-module}.
 
-An update this module can be created like this:
+An update for this module can be created like this\cite{mender-artefact}: 
 \begin{minted}[frame=none]{bash}
 mender-artifact write module-image -t $DEVICE_TYPE -T mclurs -f <CRON_FILE1> -f <CRON_FILE2>
 \end{minted}
