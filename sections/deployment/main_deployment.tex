@@ -117,12 +117,38 @@ to insure that a device will not try to execute the same task twice over.
 A mender update module is an executable located in \texttt{/usr/share/mender/modules/v3}
 which takes 2 arguments, state and files.
 
-\todo{Change to assuming }
-
-For this project we assume that any needed program is existing on the deployed device,
+Under the assumption that any needed program is existing on the deployed device,
 so a update module is made that adds tasks as cron jobs.
 
-Tasks are visible in the mender inventory.
+This approach is chosen as cron has been around for many years, and is available on most
+Linux systems.
+Cron jobs also have a simple syntax, making it easier to maintain current scheduled tasks.
+
+It is also simple to schedule jobs for different users as the cron service looks in
+\mintinline{bash}{/var/spool/cron/} for files with the name of the user it should execute as.
+Making this solution compliant with the requirements in section \ref{sub:requirements}.
+
+\begin{listing}[h]
+\begin{minted}[bgcolor=white!0]{json}
+{
+	"id": "5ed373e8bacd430001464145",
+	"attributes": [
+		{ "..." }, {
+			"name": "cron_user2",
+			"value": "1 0 1 * * echo 'Hello new month'%10,1 0 * * * echo 'Hello new day%10"
+		}, {
+			"name": "cron_user1",
+			"value": "1 0 1 * * echo 'Hello new month'%10,1 0 * * * echo 'Hello new day%10"
+		}, { "..." }
+	],
+  "updated_ts": "2020-05-31T14:42:09.02Z"
+}
+\end{minted}
+\caption{Mender device inventory with list of current cronjobs in JSON format.}
+\label{lst:inv-cron-json}
+\end{listing}
+
+Tasks are visible in the mender inventory as shown in listing \ref{lst:inv-cron-json}.
 
 
 \subsection{Docker}%

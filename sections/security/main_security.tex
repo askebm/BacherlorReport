@@ -40,8 +40,9 @@ box will trigger an event on the device.
 
 This will not prevent tampering, but will allow server side detection of tampering.
 
-To demo this effect a small C program is written that utilises the button on the sense hat
-module.\todo{cite}
+To demo this effect a small C program is written that utilises the button on the sense HAT
+module\cite{sense-hat}.
+
 
 When the event i triggered a time stamp overwrites the current time stamp.
 Time stamp is then available in the mender inventory.
@@ -55,26 +56,13 @@ An example returned from the mender API can be seen in listing \ref{lst:inv-tamp
 {
   "id": "5ed373e8bacd430001464145",
   "attributes": [
-    {
-      "name": "rootfs_type",
-      "value": "ext4"
-    }, {
-      "name": "mac_eth0",
-      "value": "b8:27:eb:c5:de:49"
-    }, {
-      "name": "device_type",
-      "value": "raspberrypi3"
-    }, {
+    { "..." }, {
       "name": "tamper_date",
       "value": "2020-05-31T14:42:09.02Z"
-    }, {
-      "name": "mender_client_version",
-      "value": "2.2.0"
-    }
+    }, { "..." }
   ],
   "updated_ts": "2020-05-31T14:42:09.02Z"
 }
-
 \end{minted}
 \caption{Mender device inventory example in JSON format.}
 \label{lst:inv-tamp-json}
