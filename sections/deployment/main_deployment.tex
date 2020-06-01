@@ -130,6 +130,12 @@ It is also simple to schedule jobs for different users as the cron service looks
 \mintinline{bash}{/var/spool/cron/} for files with the name of the user it should execute as.
 Making this solution compliant with the requirements in section \ref{sub:requirements}.
 
+This update module is implemented in bash for ease of readability and maintainability, but could
+be implemented in C the footprint of the update module was a greater concern and is publicly
+available on github\cite{mclurs-update-module}.
+
+
+
 \begin{listing}[h]
 \begin{minted}[bgcolor=white!0]{json}
 {
