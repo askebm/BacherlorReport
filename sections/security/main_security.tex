@@ -105,7 +105,7 @@ With this system mender can deliver robust and reliable updates for deployed dev
 
 \begin{figure}[h]
 \begin{center}
-\begin{tikzpicture}[random seed=4, spring layout,node distance=3cm%
+\begin{tikzpicture}[simple necklace layout,node distance=3cm%
 	,node/.style={draw}]
 	\node[node,color=green!50!black] (1){Idle};
 	\node[node] (2){Sync};
@@ -116,19 +116,19 @@ With this system mender can deliver robust and reliable updates for deployed dev
 	\node[node] (7){ArtifactRollbackReboot};
 	\node[node] (8){ArtifactFailure};
 	\node[node] (9){ArtifactCommit};
-	\draw (1) edge[->,bend left] (2)
-				(2) edge[->,bend left] (3)
-				(3) edge[->,bend left] (4)
-				(4) edge[->,bend left] (5)
-				(5) edge[->,bend left] (6)
-				(6) edge[->,bend left] (7)
-				(7) edge[->,bend left] (8)
+	\draw (1) edge[->,bend right] (2)
+				(2) edge[->,bend right] (3)
+				(3) edge[->,bend right] (4)
+				(4) edge[->,bend right] (5)
+				(5) edge[->,bend right] (6)
+				(6) edge[->,bend right] (7)
+				(7) edge[->,bend right] (8)
 				(8) edge[->,bend left] (1)
-				(2) edge[->,bend left] (1)
-				(4) edge[->,bend left] (8)
-				(5) edge[->,bend left] (9)
-				(9) edge[->,bend left] (1)
-				(9) edge[->,bend left] (6)
+				(2) edge[->,bend right] (1)
+				(4) edge[->,bend right] (8)
+				(5) edge[->,bend right] (9)
+				(9) edge[->,bend right] (1)
+				(9) edge[->,bend right] (6)
 				(6) edge[->,bend left] (8);
 \end{tikzpicture}
 \end{center}
