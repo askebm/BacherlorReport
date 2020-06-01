@@ -3,26 +3,26 @@
 \begin{document}
 
 The solution found here using mender and the yocto project to provide a feasible IoT edge cloud
-solution does indeed work. Though it has a greater footprint then complete custom solution but that
+solution does indeed work. Though it has a greater footprint than a complete custom solution but that
 is to be expected for a more generic solution. Using a large open source project  also benefits
 from more auditing from its users compared to a smaller custom solution.
-It should be expected that a larger project \underline{should} be more stable and secure.
+It \underline{should} be expected that a larger project is more stable and secure.
 Of course one could argue for security by obscurity, but that is generally frowned upon and would
 only work as long as the project is very small.
 
 
 The current project is not as easy to maintain, as the previous distribution method, mainly
 because the previous solution was not connected to the internet. The chosen solution does incur
-some more maintenance compared converting a debian image.
+some more maintenance compared to converting a debian image.
 All the benefits of using the yocto project are not apparent in this project. Going forward
-it would be easier for MCLURS system to branch out to use other devices and even use crossover
-SoCs with multiple hardware architectures to get more specialised sound recordings.
+it would be easier for the MCLURS system to branch out to use other devices and even use crossover
+SoCs with multiple hardware architectures to utilize more specialised recording hardware.
 
 
 
 Migrating to the yocto project is not penalty free, as it requires some more specialised knowledge
 about how yocto does things and the multitude of ways a single thing can be achieved.
-To help accomadte migration the yocto project has their \texttt{devtool}, which can automate 
+To help accommodate migration the yocto project has their \texttt{devtool}, which can automate 
 most of the migration and create the initial recipes. It doesn't do everything and knowledge about
 how the yocto project operates is still needed.
 
@@ -31,9 +31,5 @@ as dealing with new workflows and new build systems can make for a confusing deb
 
 An advantage that choosing the mender project is that they offer to host the mender server, which
 can reduce needed maintenance hours in maintaining server security.
-
-
-
-
 
 \end{document}

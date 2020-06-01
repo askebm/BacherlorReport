@@ -4,8 +4,8 @@
 
 The primary applications of the MCLURS project is publicly available on gitlab\cite{mclurs-git}.
 To start new layer, the configuration files could be written by hand, but
-OpenEmbedded har at tool \mintinline{bash}{bitbake-layer} which can create
-a template for a new layer , using the command \mintinline{bash}{bitbake-layer create-layer <path>}. 
+OpenEmbedded has a tool \mintinline{bash}{bitbake-layer} which can create
+a template for a new layer, using the command \mintinline{bash}{bitbake-layer create-layer <path>}. 
 
 From here a best guess recipe can be made using \mintinline{bash}{devtool add <git-url>}.
 This creates a workspace workspace folder like this:
@@ -25,7 +25,7 @@ dividing them into separate git repositories.
 As to not disturb any current workflow an extra \mintinline{bash}{Makefile} is provided, that
 builds and installs the sub-projects. This also allow the use of the
 \mintinline{bash}{autotools.bbclass} which provides default pre-compile and compile functions.
-All that is left to do is to tell what package the generated file belong.
+All that is left to do is to tell what package the generated files belong to.
 The full bitbake recipe can be seen in listing \ref{lst:mclurs_install}.
 
 \begin{listing}
@@ -43,7 +43,7 @@ There is also a custom version of the usbduxfast kernel module which the mclurs 
 make use of. It resides in \mintinline{bash}{mclurs-1.0/adc/kernel/}. Usually the
 \mintinline{bash}{usbduxfast.h} file is replaced in the linux kernel is replaced with this custom
 one written by John Hallam.
-There 2 ways to go about this; either create a patch or prepend an action to the pre-compile
+There are 2 ways to go about this; either create a patch or prepend an action to the pre-compile
 function that replaces the usbduxfast module.
 Both solutions are viable, but the most commonly accepted solution is to make a patch.
 An easy way to do this is again to use \mintinline{bash}{devtool}.
@@ -131,8 +131,9 @@ The packages provides by the MCLURS layer are listed her:
 \subsubsection{Easier migration option}%
 \label{ssub:easier_migration_option}
 
-Instead of creating all these recipes mender has an update module that supports docker
-passing docker containers. The value here that not as much dependency resolving is necessary.
+Instead of creating all these recipes mender has an update module that supports 
+passing docker containers to deployed devices.
+The value here that not as much dependency resolving is necessary.
 
 Docker would fill all the requirements regarding sandboxing hardware access and so on,
 but the cost would be a greater overhead while running the applications, which in turn

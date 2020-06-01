@@ -112,21 +112,24 @@ This system with states also allow for great customizability when creating updat
 \label{sub:tasks}
 
 Tasks are deployed using the mender update module and deploying a task have been made idempotent
-to not insure that a device will not try to execute the same task twice over.
+to insure that a device will not try to execute the same task twice over.
 
 A mender update module is an executable located in \texttt{/usr/share/mender/modules/v3}
 which takes 2 arguments, state and files.
+
+\todo{Change to assuming }
 
 For this project we assume that any needed program is existing on the deployed device,
 so a update module is made that adds tasks as cron jobs.
 
 Tasks are visible in the mender inventory.
 
+
 \subsection{Docker}%
 \label{sub:docker}
 
 Instead of porting projects mender already has a docker update module. This of course reduce
-the requirement for porting project at the expense of greater overhead, connected with running
+the requirement for porting software at the expense of greater overhead, connected with running
 containers.
 
 The custom kernel module is still needed on the deployed device, but other than that it only needs
@@ -157,8 +160,6 @@ docker-artifact-gen -n ${ARTIFACT_NAME} -t ${DEVICE_TYPE} -o ${OUTPUT_PATH} ${DO
 
 
 
-
-
-Demo docker with c-sense-hat interacting with hardware.
+Demo docker with c-sense-hat interacting with hardware. \todo{Demo}
 
 \end{document}
