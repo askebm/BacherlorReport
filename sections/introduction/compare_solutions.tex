@@ -3,13 +3,13 @@
 \begin{document}
 
 2 existing IoT solution for Linux embedded devices are considered.
-\href{mender.io}{mender} and \href{pantahub.com}{pantacore}.\\
+mender\cite{mender-home} and pantacor\cite{panathub}.\\
 
 Both solutions support fallback in case an update fails.
 They both let the deployed device poll for updates as to not have open ports on the device.
 
-\paragraph{Pantacore}%
-\label{par:pantacore}
+\paragraph{Pantacor}%
+\label{par:pantacor}
 
 is written in C and makes use of LXC containers to deploy application, which is also written in C,
 giving the entire project an overall small footprint rootfs wise.\\
@@ -20,7 +20,7 @@ would be to contribute to this open source IoT solution, it is out of the scope 
 \paragraph{Mender}%
 \label{par:mender}
 
-is a lot more mature than pantacore and has the advantage that it can transform a debian image
+is a lot more mature than pantacor and has the advantage that it can transform a debian image
 to a mender image with a fallback image, so this solution can be appended to any already 
 existing workflow that makes use of debian images. This process as easy as it is, creates a
 rather large 8GB image.\\
@@ -39,7 +39,7 @@ Yocto is also a very stable project with both Cisco and Microsoft Azure using it
 \\
 
 
-Based on the lacking maturity of pantacore and the fact that mender supports yocto, mender is
+Based on the lacking maturity of pantacor and the fact that mender supports yocto, mender is
 chosen.
 
 \end{document}

@@ -2,10 +2,7 @@
 \documentclass[../../main.tex]{subfiles}
 \begin{document}
 
-
-
-The primary applicatins of the MCLURS project reside in this
-\href{https://gitlab.com/esrl/mclurs.git }{gitlab} project.
+The primary applications of the MCLURS project is publicly available on gitlab\cite{mclurs-git}.
 To start new layer, the configuration files could be written by hand, but
 OpenEmbedded har at tool \mintinline{bash}{bitbake-layer} which can create
 a template for a new layer , using the command \mintinline{bash}{bitbake-layer create-layer <path>}. 
@@ -63,9 +60,8 @@ There is already recipe for both zsh and daemontools, but not for runit.
 The trouble with runit is that is an init system would replace systemd that mender is dependent on.
 The best solution would be to either port mender to runit or mclurs to systemd.
 As a middle of the road alternative a runit recipe that runs as a systemd service is created using
-the same workflow as the mclurs project. The recipe is based on 
-\href{https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=runit-systemd}{this}
-AUR makepkg file.\\
+the same workflow as the mclurs project. The recipe is based on an AUR makepkg file
+\cite{runit-systemd-aur}.\\
 
 The \mintinline{bash}{libmclurs-snap-perl-1.0} has a perl dependency tree which can be seen in
 figure \ref{fig:libmclurs perl dep}
@@ -104,13 +100,13 @@ figure \ref{fig:libmclurs perl dep}
 	\label{fig:libmclurs perl dep}
 \end{figure}
 
-The dependencies are gathered from \href{https://cpandeps.grinnz.com/}{this} site.
+The dependencies are gathered using a tool from cpan\cite{perl-deps}.
 
 Unfortunately it was not possible to port
-\href{https://metacpan.org/pod/ZMQ::LibZMQ3}{ZMQ::LibZMQ3} to yocto mostly due to lack
+ZMQ::LibZMQ3\cite{zmq-libzmq3} to yocto mostly due to lack
 of understanding of perl build system.\\
 
-The resulting MCLURS layer can be found \href{https://github.com/askebm/meta-mclurs}{github}.
+The resulting MCLURS layer is availe on github\cite{meta-mclurs}.
 The packages provides by the MCLURS layer are listed her:
 \begin{itemize}
 	\item devel-checklib-perl
