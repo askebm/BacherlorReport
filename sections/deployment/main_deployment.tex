@@ -134,7 +134,10 @@ This update module is implemented in bash for ease of readability and maintainab
 be implemented in C the footprint of the update module was a greater concern and is publicly
 available on github\cite{mclurs-update-module}.
 
-
+An update this module can be created like this:
+\begin{minted}[frame=none]{bash}
+mender-artifact write module-image -t $DEVICE_TYPE -T mclurs -f <CRON_FILE1> -f <CRON_FILE2>
+\end{minted}
 
 \begin{listing}[h]
 \begin{minted}[bgcolor=white!0]{json}
